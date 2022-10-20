@@ -15,8 +15,9 @@ int main(void){
 
     printMatrix(uni);
 
+
     int x, y;
-    while(uni.aglo_size < 5){
+    while(uni.aglo_size < uni.matrix_size){
         find_empty(&x, &y, uni);
         while(inside(x, y, uni)){
             int flag = mov(&x, &y, rand() % 4, uni);
@@ -29,7 +30,6 @@ int main(void){
     }
     printf("\n");
     printMatrix(uni);
-
     destroiMatrix(uni);
 
     return 0;

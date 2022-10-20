@@ -80,7 +80,7 @@ void find_empty(int* x, int* y, fractal uni){
 }
 
 int inside(int x, int y, fractal uni){
-    return (x > 0 && x < uni.matrix_size && y > 0 && y < uni.matrix_size);
+    return (x >= 0 && x < uni.matrix_size && y >= 0 && y < uni.matrix_size);
 }
 
 int mov(int* x, int*y, int dir, fractal uni){
