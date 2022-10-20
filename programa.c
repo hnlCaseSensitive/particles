@@ -10,6 +10,13 @@ int** criaMatrix(int n){
     return matrix;
 }
 
+void destroiMatrix(fractal uni){
+    for(int i = 0; i < uni.matrix_size; i++){
+        free(uni.matrix[i]);
+    }
+    free(uni.matrix);
+}
+
 void printMatrix(fractal uni){
     int size = uni.matrix_size;
     int** matrix = uni.matrix;
@@ -22,7 +29,8 @@ void printMatrix(fractal uni){
 
 }
 
-void setup(fractal uni){
+void setup(fractal* unix){
+    fractal uni = *unix;
     int point, size = uni.matrix_size;
     if(size % 2 == 0){
         point = size;
@@ -38,7 +46,7 @@ void setup(fractal uni){
             uni.matrix[i][j] = 0;
         }
     }
-    uni.aglo_size = 1;
+    unix->aglo_size = 1;
 }
 
 int tem_vizinho(int x, int y, fractal uni){
@@ -78,19 +86,19 @@ int inside(int x, int y, fractal uni){
 int mov(int* x, int*y, int dir, fractal uni){
     switch(dir){
         case 0:
-            *x -= 1;
+            *x = *x - 1;
             break;
         case 1:
-            *x += 1;
+            *x = *x + 1;
             break;
         case 2:
-            *y -= 1;
+            *y = *y - 1;
             break;
         case 3:
-            *y += 1;
+            *y = *y + 1;
             break;
     }
-    if(tem_vizinho(*x, *y, uni)){
+    if(inside(*x, *y, uni) && tem_vizinho(*x, *y, uni)){
         return 0;
     }else return 1;
 }
